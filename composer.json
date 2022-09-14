@@ -1,0 +1,16 @@
+{
+    "name": "elias/meuframework",
+    "description": "Meu framework",
+    "authors": [
+        {
+            "name": "Elias de Oliveira",
+            "email": "eliasdeoliveirabr@gmail.com"
+        }
+    ],
+    "require": {},
+    "autoload": {
+        "psr-4": {
+            "app\\": "app/"
+        }
+    }
+}
