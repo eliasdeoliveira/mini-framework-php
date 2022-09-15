@@ -66,23 +66,47 @@ class TarefaModel
         if (!empty($_SESSION['autenticacao']['usuario']['id_usuario'])) {
             $usuario_id = $_SESSION['autenticacao']['usuario']['id_usuario'];
             $situacao = ($dados['situacao'] === 'on' ? 'concluido' : 'pendente');
-            $sql = "
-            INSERT INTO tarefa
-            (
-                nome_tarefa,
-                descricao_tarefa,
-                usuario_criacao,
-                usuario_alteracao,
-                situacao
-            )
-            VALUES
-            (
-                '{$dados['nome_tarefa']}',
-                \"{$dados['descricao_tarefa']}\",
-                {$usuario_id},
-                {$usuario_id},
-                '{$situacao}'
-            ) ;";
+            $data_conclusao = date('Y-m-d H:i:s');
+            if ($situacao === 'concluido') {
+                $sql = "
+                INSERT INTO tarefa
+                (
+                    nome_tarefa,
+                    descricao_tarefa,
+                    data_conclusao,
+                    usuario_criacao,
+                    usuario_alteracao,
+                    situacao
+                )
+                VALUES
+                (
+                    '{$dados['nome_tarefa']}',
+                    \"{$dados['descricao_tarefa']}\",
+                    \"{$data_conclusao}\",
+                    {$usuario_id},
+                    {$usuario_id},
+                    '{$situacao}'
+                ) ;";
+            } else {
+                $sql = "
+                INSERT INTO tarefa
+                (
+                    nome_tarefa,
+                    descricao_tarefa,
+                    usuario_criacao,
+                    usuario_alteracao,
+                    situacao
+                )
+                VALUES
+                (
+                    '{$dados['nome_tarefa']}',
+                    \"{$dados['descricao_tarefa']}\",
+                    {$usuario_id},
+                    {$usuario_id},
+                    '{$situacao}'
+                ) ;";
+            }
+
             $this->pdo->executeNonQuery($sql);
             return $this->pdo->getLastID();
         }

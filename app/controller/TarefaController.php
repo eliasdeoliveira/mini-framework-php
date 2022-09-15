@@ -34,7 +34,7 @@ class TarefaController extends Controller
     {
         $dados['titulo'] = 'Tarefas';
         $dados['dependenciasJS'] = [
-            'https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js'
+            'https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js" integrity="sha512-GsLlZN/3F2ErC5ifS5QtgpiJtWd43JWSuIgh7mbzZ8zBps+dvLusV+eNQATqgA/HdeKFVgA5v3S/cIrLF7QnIg=='
         ];
         $dados['permissao']['visualizar'] = $this->permissaoUsuario->getById(2);
         $dados['permissao']['cadastrar'] = $this->permissaoUsuario->getById(3);

@@ -10,7 +10,7 @@
     <?php
     if (!empty($dependenciasJS)) {
         foreach ($dependenciasJS as $item) {
-            echo "<script src=\"{$item}\"></script>";
+            echo "<script src=\"{$item}\" crossorigin=\"anonymous\" referrerpolicy=\"no-referrer\"></script>";
         }
     }
     ?>
@@ -102,7 +102,7 @@
                         </buttom>
                     </div>
                     <div class="flex-grow-1">
-                        <header class="px-2">
+                        <header class="px-2 pt-2">
                             <h5 class=""><?= ($titulo) ?></h5>
                         </header>
                     </div>

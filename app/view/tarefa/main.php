@@ -1,26 +1,24 @@
 <?php
 if ($lista !== false) {
 ?>
-    <?php
-    if ($permissao['cadastrar']) {
-    ?>
-        <div class="mt-3">
-            <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalTarefa">
+    <div id="botoes">
+        <?php
+        if ($permissao['cadastrar']) {
+        ?>
+            <button class="btn btn-primary mt-3" data-bs-toggle="modal" data-bs-target="#modalTarefa">
                 <i class="fa-solid fa-plus"></i> Adicionar
             </button>
-        </div>
-    <?php
-    }
-    if ($permissao['cadastrar']) {
-    ?>
-        <!-- <div class="mt-3">
-            <button class="btn btn-primary" onclick="gerarPDF()">
+        <?php
+        }
+        if ($permissao['cadastrar']) {
+        ?>
+            <button class="btn btn-primary mt-3" onclick="gerarPDF()">
                 <i class="fa-solid fa-file-pdf"></i> Gerar PDF
             </button>
-        </div> -->
-    <?php
-    }
-    ?>
+        <?php
+        }
+        ?>
+    </div>
     <?php
     if ($crud !== false) {
     ?>
@@ -49,7 +47,7 @@ if ($lista !== false) {
         <div class="col-sm-12 col-md-6 col-lg-4 col-xl-3">
             <div class="p-3 shadow-sm border mt-3 rounded">
                 <h3 class="text-center">
-                    <?= $item['nome_tarefa'] ?>
+                    <?= $item['nome_tarefa'] ?> 
                 </h3>
                 <h6 class="text-center">
                     <?= ($item['situacao'] === 'pendente' ? '<span class="badge text-bg-warning">Pendente</span>' : '<span class="badge text-bg-success">Concluído<?pan>'); ?>
@@ -60,7 +58,7 @@ if ($lista !== false) {
                 </h6>
                 <hr>
                 <h6 class="text-center">
-                    Data de conclusão: <?= ($item['data_conclusao'] === null ? '-' : $item['data_conclusao_formatado']); ?>
+                    Data de conclusão: <?= ($item['data_conclusao_formatado'] === null ? '-' : $item['data_conclusao_formatado']); ?>
                 </h6>
                 <div class="text-center">
                     <?php
@@ -229,27 +227,22 @@ if ($lista !== false) {
     </div>
 </div>
 <script>
-    window.jsPDF = window.jspdf.jsPDF;
-
     function gerarPDF() {
-        let doc = new jsPDF();
-        console.log('doc',doc)
-        let lista = document.getElementById('lista').innerHTML;
-        console.log('lista', lista)
-        doc.html(`
-        <!doctype html>
-            <html lang="pt-br">
-            <head>
-                <meta charset="utf-8">
-                <meta name="viewport" content="width=device-width, initial-scale=1">
-                <title>Bootstrap demo</title>
-                <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
-            </head>
-            <body>
-                ${lista}
-            </body>
-            </html>
-        `);
-        doc.save("a4.pdf");
+        const item = document.querySelector('#main');
+
+        let opt = {
+            margin: 1,
+            filename: "myfile.pdf",
+            html2canvas: {
+                scale: 2
+            },
+            jsPDF: {
+                unit: "in",
+                format: "letter",
+                orientation: "portrait"
+            },
+        };
+
+        html2pdf().set(opt).from(item).save();
     }
 </script>
