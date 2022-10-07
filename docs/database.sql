@@ -57,28 +57,28 @@ VALUES
     (
         'Usuário 1',
         '35998242097',
-        'teste1@email.com',
+        '1@email.com',
         '202cb962ac59075b964b07152d234b70',
         'ativo'
     ),
     (
         'Usuário 2',
         '35998242097',
-        'teste2@email.com',
+        '2@email.com',
         '202cb962ac59075b964b07152d234b70',
         'ativo'
     ),
     (
         'Usuário 3',
         '35998242097',
-        'teste3@email.com',
+        '3@email.com',
         '202cb962ac59075b964b07152d234b70',
         'ativo'
     ),
     (
         'Usuário 4',
         '35998242097',
-        'teste4@email.com',
+        '4@email.com',
         '202cb962ac59075b964b07152d234b70',
         'inativo'
     );
